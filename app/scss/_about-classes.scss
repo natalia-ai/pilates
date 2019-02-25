@@ -1,0 +1,274 @@
+.about-classes {
+    &__title {
+        margin: -10px 0 20px 25px;
+    }
+    &__stages {
+        display: flex;
+        flex-direction: column;
+    }
+    &__stage {
+        margin: -8px 0;
+    }
+    &__stage-warm-up {
+        margin: 15px 0;
+    }
+    &__title-of-stage-warm-up {
+        position: relative;
+        top: 53px;
+    }
+    &__title-of-stage-stretching {
+        margin: 10px 0 70px;
+    }
+
+    &__stage-basic {
+        margin: 0 0;
+        padding: 48px 0 0;
+    }
+    &__stage-stretching {
+        margin: 35px -10px;
+        padding: 35px 0 0;
+        box-sizing: border-box;
+    }
+    &__img {
+        position: relative;
+        width: 70%;
+        max-width: 552px;
+        margin: -4px auto 25px 43px;
+    }
+    &__img-warm-up {
+        width: 81%;
+        max-width: 405px;
+        margin: -22px 31px 10px auto;
+    }
+    &__img-basic {
+        width: 90%;
+        max-width: 777px;
+        margin: 48px 22px 35px auto;
+    }
+    &__img-stretching {
+        width: 100%;
+        max-width: 960px;
+        margin: -17px auto 45px 0;
+    }
+    &__text {
+        width: 90%;
+        margin: -20px 0 0 6px;
+        text-align: center;
+    }
+    &__text-warm-up {
+        width: 100%;
+        margin: 0;
+        padding: 5px 0 0;
+    }
+    &__text-basic {
+        width: 90%;
+        margin: -14px auto 0 25px;
+    }
+    &__text-stretching {
+        width: 98%;
+        color: $pallete-subtitle-of-block-text;
+    }
+    @include respond-to("medium") {
+        width: 76.5%;
+        margin: 0 auto 10px;
+        &__title {
+            margin: -8px 0 20px 25px;
+            &::before {
+                top: 30px;
+            }
+        }
+        &__stage {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -8px auto 0;
+        }
+        &__stage-warm-up {
+            margin: 15px 0;
+        }
+        &__title-of-stage-breathing-techniques {
+            width: 60%;
+            order: 1;
+            margin:  64px 0 0 27px;
+            text-align: left;
+        }
+        &__title-of-stage-warm-up {
+            width: 50%;
+            top: 0;
+            margin: -43% 0 0 41vw;
+            text-align: left;
+            order: 2;
+        }
+        &__title-of-stage-basic {
+            width: 43%;
+            margin: 43px 0 0 -8.5vw;
+            order: 1;
+        }
+        &__title-of-stage-stretching {
+            position: relative;
+            left: -272px;
+            width: 48%;
+            margin: 8px -285px 0 0;
+            text-align: left;
+            order: 2;
+        }
+    
+        &__stage-basic {
+            margin: 0 0;
+            padding: 48px 0 0;
+        }
+        &__stage-stretching {
+            margin: 36px -10px;
+            padding: 35px 0 0;
+            box-sizing: border-box;
+        }
+        &__text-stretching {
+            color: $pallete-subtitle-of-block-text;
+        }
+        &__img {
+            width: 39%;
+            margin: -215px 10px 0 auto;
+            order: 3;
+        }
+        &__img-warm-up {
+            width: 40%;
+            max-width: 405px;
+            margin: -37px 0 35px 20px;
+            order: 1;
+        }
+        &__img-basic {
+            width: 50%;
+            margin: 8px 32px 35px auto;
+            order: 2;
+        }
+        &__img-stretching {
+            width: 65%;
+            margin: -40px auto 0 -50px;
+            order: 1;
+        }
+        &__text {
+            width: 60%;
+            margin: 27px 0 0 25px;
+            text-align: left;
+            order: 2;
+        }
+        &__text-warm-up {
+            width: 50%;
+            margin: -36.5% auto 0 41vw;
+            order: 2;
+        }
+        &__text-basic {
+            width: 43%;
+            margin: 15% 0 0 -24.5vw;
+            text-align: left;
+            order: 1;
+        }
+        &__text-stretching {
+            position: relative;
+            left: 18px;
+            width: 48%;
+            margin: -28% 0 0 auto;
+        }
+    }
+    @include respond-to("large") {
+        width: 96%;
+        margin: 0 auto 10px;
+        &__title {
+            &::before {
+                top: 60px;
+            }
+        }
+        &__stages {
+            width: 95%;
+        }
+        &__stage {
+            display: flex;
+            flex-wrap: wrap;
+            width: 93%;
+            margin: -8px auto 0;
+        }
+        &__stage-warm-up {
+            margin: 15px 0;
+        }
+        &__title-of-stage-breathing-techniques {
+            width: 60%;
+            order: 1;
+            margin:  172px 0 0 27px;
+            text-align: left;
+        }
+        &__title-of-stage-warm-up {
+            width: 50%;
+            top: 0;
+            margin: -35% 0 0 62%;
+            text-align: left;
+            order: 2;
+        }
+        &__title-of-stage-basic {
+            width: 30%;
+            margin: 142px auto 0 0;
+            order: 1;
+        }
+        &__title-of-stage-stretching {
+            width: 38%;
+            margin: -342px 0 0 92%;
+            order: 2;
+        }
+    
+        &__stage-basic {
+            margin: 0 0;
+            padding: 48px 0 0;
+        }
+        &__stage-stretching {
+            margin: 35px -10px;
+            padding: 35px 0 0;
+            box-sizing: border-box;
+        }
+        &__text-stretching {
+            color: $pallete-subtitle-of-block-text;
+        }
+        &__img {
+            width: 39.5%;
+            margin: -302px 140px 0 auto;
+            order: 3;
+        }
+        &__img-warm-up {
+            width: 44%;
+            max-width: 462px;
+            margin: -42px auto 35px 78px;
+            order: 1;
+        }
+        &__img-basic {
+            width: 46%;
+            margin: 30px 98px 35px auto;
+            order: 3;
+        }
+        &__img-stretching {
+            width: 63%;
+            margin: 46px 0 0 25px;
+            order: 1;
+        }
+        &__text {
+            width: 38%;
+            margin: 27px auto 0 25px;
+            text-align: left;
+            line-height: 1.5em;
+            letter-spacing: 0.035em;
+            order: 2;
+        }
+        &__text-warm-up {
+            width: 40%;
+            margin: -30.5% -2.2% 0 auto;
+            order: 2;
+        }
+        &__text-basic {
+            width: 38%;
+            margin: 195px 10px 0 -24.5%;
+            order: 2;
+        }
+        &__text-stretching {
+            position: relative;
+            left: 0px;
+            width: 38%;
+            margin: -290px -4% 0 auto; 
+        }
+    }
+}

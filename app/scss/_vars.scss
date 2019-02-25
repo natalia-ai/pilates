@@ -1,0 +1,56 @@
+$breakpoints: (
+  "mobile-372":               (min-width: 372px),
+  "mobile-461":                (min-width: 461px),
+  "mobile-565":               (min-width: 565px),
+  "mobile-only":              (max-width: 764px),
+  "medium":                   (min-width: 764px),
+  "large":                    (min-width: 1366px)
+);
+
+
+$color-white1: #fff;
+$color-white2: #fefefe;
+$color-black: #000;
+$color-god-gray: #111;
+$color-plantation: #2A4F37;
+$color-chelsea-cucumber: #91aa59;
+$color-mine-shaft: #242424;
+$pallete-body-text-and-background: $color-white1;
+$pallete-block-background: $color-chelsea-cucumber;
+$pallete-body-text: $color-black;
+$pallete-popup-text: $color-god-gray;
+$pallete-in-detail-text: $color-plantation;
+$pallete-subtitle-of-block-text: $color-mine-shaft;
+$pallete-logo-text: $color-white2;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+$font-sfui: 'Sfui',
+Arial,
+sans-serif;
+$font-roboto-light: 'Roboto Light',
+Tahoma,
+sans-serif;
+$font-roboto-medium: 'Roboto Medium',
+Tahoma,
+sans-serif;
+$font-proxima-exstra-bold: 'Proxima Nova ExtraBold',
+Arial Bold,
+sans-serif;
+$font-proxima-semibold: 'Proxima Nova Semibold',
+Arial Bold,
+sans-serif;
+$font-proxima-regular: 'Proxima Nova Regular',
+Arial,
+sans-serif;
+
+$font-title: $font-roboto-light;
+$font-subtitle: $font-roboto-medium;
+$font-main: $font-sfui;
+$font-background: $font-proxima-exstra-bold;
+$font-popup-title: $font-proxima-semibold;
+$font-popup-subtitle: $font-proxima-regular;

@@ -1,0 +1,49 @@
+.page {
+    position: relative;
+    &__wrapper {
+        position: relative;
+        grid-template-rows: 46px 1fr 157px;
+        margin: 0 auto;
+        min-width: 320px;
+        max-width: 1600px;
+        min-height: 100vh;
+        color: $pallete-body-text-and-background;
+        background-color: $pallete-body-text-and-background;
+        box-shadow: 0 6px 15px rgba(33, 33, 33, 0.2);
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 474px;
+            background: url("../img/background-mobile.png") no-repeat;
+            background-size: cover;
+        }
+    }
+    @include respond-to("mobile-565") {
+        &__wrapper {
+            &::before {
+                background: url("../img/background-tablet.png") no-repeat;
+            }
+        }
+    }
+    @include respond-to("medium") {
+        &__wrapper {
+            &::before {
+                height: 658px;
+                background: url("../img/background-tablet.png") no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+    @include respond-to("large") {
+        &__wrapper {
+            &::before {
+                height: 789px;
+                background: url("../img/background-desctop.png") no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+.main-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    box-sizing: border-box;
+    &__logo {
+        margin: 5px 0 auto 17px;
+        z-index: 2;
+    }
+    &__logo-tablet {
+        display: none;
+    }
+    &__logo-desctop {
+        display: none;
+    }
+    &__logo-text {
+        margin: -36px 0 0;
+        font-family: $font-main;
+        font-size: 0.6em;
+        font-weight: $font-weight-light;
+        color: $pallete-logo-text;
+        line-height: 0.82em;
+        text-transform: uppercase;
+    }
+    &__telephone {
+        display: none;
+        width: 30%;
+        margin: 15px 28px 0 0;
+        font-family: $font-main;
+        font-size: 1em;
+        font-weight: $font-weight-bold;
+        color: $pallete-body-text;
+        line-height: 1.312em;
+        text-transform: uppercase;
+        z-index: 1;
+    }
+    @include respond-to("medium") {
+        &__logo {
+            margin: 22px 0 auto 20px;
+        }
+        &__logo-mobile {
+            display: none;
+        }
+        &__logo-tablet {
+            display: block;
+        }
+        &__logo-text {
+            margin: -36px 0 0 40px;
+            font-size: 0.8em;
+        }
+        &__telephone {
+            display: block;
+        }
+    }
+    @include respond-to("large") {
+        &__logo {
+            margin: 0 0 auto 100px;
+        }
+        &__logo-mobile {
+            display: none;
+        }
+        &__logo-tablet {
+            display: none;
+        }
+        &__logo-desctop {
+            display: block;
+        }
+        &__logo-text {
+            margin: 4px 0 0;
+            font-size: .9em;
+            letter-spacing: 0.06em;
+        }
+        &__telephone {
+            display: block;
+            margin: 30px -70px 0 0;
+        }
+    }
+}

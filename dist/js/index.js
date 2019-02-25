@@ -1,135 +1,185 @@
 'use strict';
 (function () {
-var ELEMENT_N = 3;
-var cardTemplate = $('#template-card').children('.card-box'),
-  cardsContainer = $('.page__cards-box'),
-  renderedCards = [];
+var slider = (function (config) {
 
-var cardIds = ['templateId-1', 'templateId-2', 'templateId-3'];
-var cardBoxDescriptions = ['Печень утки разварная с артишоками', 'Головы щучьи с чесноком да свежайшая сёмгушка', 'Филе из цыплят с трюфелями в бульоне'];
-var productAdditives = ['с фуа-гра', 'с рыбой', 'с курой'];
-var numberOfPortions = ['10', '40', '100'];
-var numbersForDeclensionOfPortions = ['10', '40', '100'];
-var numberOfBonuses = ['', '2', '5'];
-var numbersForDeclensionOfBonuses = ['1', '2', '5'];
-var productWeights = ['0,5', '2', '5'];
-var inputAttributes = ['foiegras', 'fish', 'chicken'];
-
-function makeObject() {
-  var objectArray = Array(ELEMENT_N);
-  for (var i = 0; i < ELEMENT_N; i++) {
-    var objectTemplate = {};
-
-    objectTemplate.cardId = cardIds[i];
-    objectTemplate.cardBoxDescription = cardBoxDescriptions[i] + '.';
-    objectTemplate.additive = productAdditives[i];
-    objectTemplate.portion = numberOfPortions[i];
-    objectTemplate.bonus = numberOfBonuses[i];
-    objectTemplate.numberForDeclensionOfPortions = numbersForDeclensionOfPortions[i];
-    objectTemplate.numberForDeclensionOfBonuses = numbersForDeclensionOfBonuses[i];
-    objectTemplate.weight = productWeights[i];
-    objectTemplate.inputAttribute = inputAttributes[i];
-    objectArray[i] = objectTemplate;
-  }
-  return objectArray;
-};
-
-function createCard(product) {
-  var card = cardTemplate.clone().appendTo($('.form'));
-  var input = $('input');
-  cardTemplate.remove();
-  $('.card-box').attr("id", product.cardId);
-  $('.card__subtitle').text(product.additive);
-  $('.card__text--portion').prepend('<b>' + product.portion + '</b>' + declineNouns(product.numberForDeclensionOfPortions, [' порция', ' порции', ' порций']));
-  var bonus = $('.card__text--bonus');
-  bonus.text(declineNouns(product.numberForDeclensionOfBonuses, [' мышь', ' мыши', ' мышей']) + ' в подарок');
-  bonus.prepend('<b>' + product.bonus + '</b>');
-
-  if (product.portion === numberOfPortions[2]) {
-    $('.card__texts').append('<p class="card__text">заказчик доволен</p>');
+  const ClassName = {
+    INDICATOR_ACTIVE: 'feedback__slider-indicator--active',
+    ITEM: 'feedback__slider-item',
+    ITEM_LEFT: 'feedback__slider-item--left',
+    ITEM_RIGHT: 'feedback__slider-item--right',
+    ITEM_PREV: 'feedback__slider-item--prev',
+    ITEM_NEXT: 'feedback__slider-item--next',
+    ITEM_ACTIVE: 'feedback__slider-item--active'
   }
 
-  $('.card__weight').prepend(product.weight);
-  input.prop('name', product.inputAttribute);
-  input.prop('value', product.inputAttribute);
-  $('.card').attr('data-disabled', 'Печалька,' + product.additive + ' закончился.');
-  $('.card-box__description').attr('data-selected', product.cardBoxDescription);
-  return card;
-};
+  var
+    _isSliding = false, // индикация процесса смены слайда
+    _interval = 0, // числовой идентификатор таймера
+    _transitionDuration = 700, // длительность перехода
+    _slider = {}, // DOM элемент слайдера
+    _items = {}, // .slider-item (массив слайдов) 
+    _sliderIndicators = {}, // [data-slide-to] (индикаторы)
+    _config = {
+      selector: '', // селектор слайдера
+      isCycling: true, // автоматическая смена слайдов
+      direction: 'next', // направление смены слайдов
+      interval: 5000, // интервал между автоматической сменой слайдов
+      pause: true // устанавливать ли паузу при поднесении курсора к слайдеру
+    };
 
-function declineNouns(n, nouns) {
-  return nouns[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
-};
+  var
+    // функция для получения порядкового индекса элемента
+    _getItemIndex = function (_currentItem) {
+      var result;
+      _items.forEach(function (item, index) {
+        if (item === _currentItem) {
+          result = index;
+        }
+      });
+      return result;
+    },
+    // функция для подсветки активного индикатора
+    _setActiveIndicator = function (_activeIndex, _targetIndex) {
+      if (_sliderIndicators.length !== _items.length) {
+        return;
+      }
+      _sliderIndicators[_activeIndex].classList.remove(ClassName.INDICATOR_ACTIVE);
+      _sliderIndicators[_targetIndex].classList.add(ClassName.INDICATOR_ACTIVE);
+    },
 
-function renderCards(data) {
-  var fragment = $(document.createDocumentFragment());
-  $(data).each(function (item) {
-    var card = createCard(data[item]);
-    renderedCards.push(card);
-    $(fragment.append(card));
-  });
-  cardsContainer.append(fragment);
-  disableCard('input:checkbox[name="chicken"]', '#templateId-3');
-  selectCard('input:checkbox[name="fish"]', '#templateId-2'); 
-  defoultCard('input:checkbox[name="foiegras"]', '#templateId-1');
-};
+    // функция для смены слайда
+    _slide = function (direction, activeItemIndex, targetItemIndex) {
+      var
+        directionalClassName = ClassName.ITEM_RIGHT,
+        orderClassName = ClassName.ITEM_PREV,
+        activeItem = _items[activeItemIndex], // текущий элемент
+        targetItem = _items[targetItemIndex]; // следующий элемент
 
-function disableCard(inputName, cardId) {
-  if ($(inputName).prop('disabled', true)) {
-    $(cardId).addClass('is-disabled');
-    $(cardId).children('.card-box__description').css('visibility', 'hidden');
-    $(cardId).children('.card-box__make-your-pet-happy').css('visibility', 'hidden');
+      var _slideEndTransition = function () {
+        activeItem.classList.remove(ClassName.ITEM_ACTIVE);
+        activeItem.classList.remove(directionalClassName);
+        targetItem.classList.remove(orderClassName);
+        targetItem.classList.remove(directionalClassName);
+        targetItem.classList.add(ClassName.ITEM_ACTIVE);
+        window.setTimeout(function () {
+          if (_config.isCycling) {
+            clearInterval(_interval);
+            _cycle();
+          }
+          _isSliding = false;
+          activeItem.removeEventListener('transitionend', _slideEndTransition);
+        }, _transitionDuration);
+      };
+
+      if (_isSliding) {
+        return; // завершаем выполнение функции если идёт процесс смены слайда
+      }
+      _isSliding = true; // устанавливаем переменной значение true (идёт процесс смены слайда)
+
+      if (direction === "next") { // устанавливаем значение классов в зависимости от направления
+        directionalClassName = ClassName.ITEM_LEFT;
+        orderClassName = ClassName.ITEM_NEXT;
+      }
+
+      targetItem.classList.add(orderClassName); // устанавливаем положение элемента перед трансформацией
+      _setActiveIndicator(activeItemIndex, targetItemIndex); // устанавливаем активный индикатор
+
+      window.setTimeout(function () { // запускаем трансформацию
+        targetItem.classList.add(directionalClassName);
+        activeItem.classList.add(directionalClassName);
+        activeItem.addEventListener('transitionend', _slideEndTransition);
+      }, 0);
+
+    },
+    // функция для перехода к предыдущему или следующему слайду
+    _slideTo = function (direction) {
+      var
+        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), // текущий элемент
+        activeItemIndex = _getItemIndex(activeItem), // индекс текущего элемента 
+        lastItemIndex = _items.length - 1, // индекс последнего элемента
+        targetItemIndex = activeItemIndex === 0 ? lastItemIndex : activeItemIndex - 1;
+      if (direction === "next") { // определяем индекс следующего слайда в зависимости от направления
+        targetItemIndex = activeItemIndex == lastItemIndex ? 0 : activeItemIndex + 1;
+      }
+      _slide(direction, activeItemIndex, targetItemIndex);
+    },
+    // функция для запуска автоматической смены слайдов в указанном направлении
+    _cycle = function () {
+      if (_config.isCycling) {
+        _interval = window.setInterval(function () {
+          _slideTo(_config.direction);
+        }, _config.interval);
+      }
+    },
+    // обработка события click
+    _actionClick = function (e) {
+      var
+        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), // текущий элемент
+        activeItemIndex = _getItemIndex(activeItem), // индекс текущего элемента
+        targetItemIndex = e.target.getAttribute('data-slide-to');
+
+      if (!(e.target.hasAttribute('data-slide-to') || e.target.classList.contains('feedback__slider-control'))) {
+        return; // завершаем если клик пришёлся на не соответствующие элементы
+      }
+      if (e.target.hasAttribute('data-slide-to')) {// осуществляем переход на указанный сдайд 
+        if (activeItemIndex === targetItemIndex) {
+          return;
+        }
+        _slide((targetItemIndex > activeItemIndex) ? 'next' : 'prev', activeItemIndex, targetItemIndex);
+      } else {
+        e.preventDefault();
+        _slideTo(e.target.classList.contains('feedback__slider-control--next') ? 'next' : 'prev');
+      }
+    },
+    // установка обработчиков событий
+    _setupListeners = function () {
+      // добавление к слайдеру обработчика события click
+      _slider.addEventListener('click', _actionClick);
+      // остановка автоматической смены слайдов (при нахождении курсора над слайдером)
+      if (_config.pause && _config.isCycling) {
+        _slider.addEventListener('mouseenter', function (e) {
+          clearInterval(_interval);
+        });
+        _slider.addEventListener('mouseleave', function (e) {
+          clearInterval(_interval);
+          _cycle();
+        });
+      }
+    };
+
+  // init (инициализация слайдера)
+  for (var key in config) {
+    if (key in _config) {
+      _config[key] = config[key];
+    }
   }
-};
+  _slider = (typeof _config.selector === 'string' ? document.querySelector(_config.selector) : _config.selector);
+  _items = _slider.querySelectorAll('.' + ClassName.ITEM);
+  _sliderIndicators = _slider.querySelectorAll('[data-slide-to]');
+  // запуск функции cycle
+  _cycle();
+  _setupListeners();
 
-function selectCard(inputName, cardId) {
-  if ($(inputName).prop('selected', true)) {
-    $(cardId).addClass('is-selected');
-    $(cardId).children('.card-box__description').css('visibility', 'visible');
-    $(cardId).children('.card-box__make-your-pet-happy').css('visibility', 'hidden');
-    $(cardId).find('input').prop('checked', true);
-  } 
-};
-
-function defoultCard(inputName, cardId) {
-  if ($(inputName).prop('selected', false)) {
-    $(cardId).children('.card-box__description').css('visibility', 'hidden');
-    $(cardId).children('.card-box__make-your-pet-happy').css('visibility', 'visible');
-  } 
-};
-
-$(cardsContainer).on('click', 'section[id^="templateId-"]', statusClickHandler);
-
-function statusClickHandler(event) {
-  var checkbox =  $(this).find('input'),
-  description = $(this).children('.card-box__description'),
-  makeYourPetHappy = $(this).children('.card-box__make-your-pet-happy');
-  event.preventDefault();
-  if ($(this).hasClass('is-selected')) {
-    $(this).removeClass('is-selected');
-    $(this).removeClass('is-selected-hover');
-    $(description).css('visibility', 'hidden');
-    $(makeYourPetHappy).css('visibility', 'visible');
-    $(checkbox).prop('checked', false);
-  } else {
-    $(this).addClass('is-selected');
-    $(description).css('visibility', 'visible');
-    $(makeYourPetHappy).css('visibility', 'hidden');
-    $(checkbox).prop('checked', true);
+  return {
+    next: function () { // метод next 
+      _slideTo('next');
+    },
+    prev: function () { // метод prev 
+      _slideTo('prev');
+    },
+    stop: function () { // метод stop
+      clearInterval(_interval);
+    },
+    cycle: function () { // метод cycle 
+      clearInterval(_interval);
+      _cycle();
+    }
   }
-};
-
-$(cardsContainer).on('mouseleave', 'section[id^="templateId-"]', statusMouseleaveHandler);
-
-function statusMouseleaveHandler(event) {
-  event.preventDefault();
-  if ($(this).hasClass('is-selected')) {
-    $(this).addClass('is-selected-hover');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function (event) {
-  event.preventDefault();
-  renderCards(makeObject());
-});
-})();
+}({
+  selector: '.feedback__slider',
+  isCycling: true,
+  direction: 'next',
+  interval: 5000,
+  pause: true
+}));
+})()

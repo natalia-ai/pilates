@@ -1,0 +1,204 @@
+.footer {
+    width: 100%;
+    margin: -10px 0;
+    padding: 25px 30% 10px;
+    box-sizing: border-box;
+    background: $pallete-block-background left bottom;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+    }
+    &__logo {
+        width: 60%;
+        margin: 12px auto 6px 50px;
+    }
+    &__logo-text {
+        margin: -80px auto 0 -5px;
+        font-size: 0.546em;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+    &__logo-tablet {
+        display: none;
+    }
+    &__logo-desctop {
+        display: none;
+    }
+    &__social {
+        margin: 0 auto 40px;
+        & ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 73px;
+            margin: 0 auto -5px;
+            padding: 0;
+            list-style: none;
+        }
+    }
+    &__trail {
+        position: relative;
+        width: 95%;
+        font-family: $font-main;
+        font-size: 0.714em;
+        font-weight: $font-weight-light;
+        color: $pallete-logo-text;
+        letter-spacing: 0.086em;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: url("../img/copyright.png") no-repeat;
+        }
+    }
+    @include respond-to("mobile-372") {
+        padding: 25px 35% 10px;
+        &__logo {
+            margin: 14px auto 8px 40px;
+        }
+    }
+    @include respond-to("mobile-461") {
+        height: 69px;
+        padding: 12px 15px 17px;
+        box-sizing: border-box;
+        &__content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 0 auto;
+            width: 100%;
+        }
+        &__logo {
+            width: 60%;
+            margin: -15px auto 0 65px;
+            order: 2;
+        }
+        &__logo-mobile {
+            display: block;
+        }
+        &__logo-text {
+            margin: -12px auto 0;
+            letter-spacing: 0.06em;
+        }
+        &__social {
+            margin: 22px 4px auto auto;
+            order: 3;
+        }
+        &__trail {
+            width: 50%;
+            margin: 22px auto 0 0;
+            font-size: 0.929em;
+            order: 1;
+            &::after {
+                left: 130px;
+            }
+        }
+    }
+    @include respond-to("medium") {
+        height: 69px;
+        padding: 12px 20px 17px;
+        box-sizing: border-box;
+        &__content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 0 auto;
+            width: 100%;
+        }
+        &__logo {
+            width: 60%;
+            margin: -5px auto 0 11px;
+            order: 2;
+        }
+        &__logo-mobile {
+            display: none;
+        }
+        &__logo-tablet {
+            display: block;
+        }
+        &__logo-text {
+            margin: -18px auto 0 38px;
+            letter-spacing: 0.06em;
+        }
+        &__social {
+            margin: 30px 4px auto auto;
+            order: 3;
+        }
+        &__trail {
+            width: 50%;
+            margin: 22px auto 0 0;
+            font-size: 0.929em;
+            order: 1;
+            &::after {
+                left: 130px;
+            }
+        }
+    }
+    @include respond-to("large") {
+        height: 130px;
+        padding: 39px 100px 38px;
+        box-sizing: border-box;
+        &__content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 0 auto;
+            width: 100%;
+        }
+        &__logo {
+            width: 60%;
+            margin: -5px auto 0 -50px;
+            order: 2;
+        }
+        &__logo-mobile {
+            display: none;
+        }
+        &__logo-tablet {
+            display: none;
+        }
+        &__logo-desctop {
+            display: block;
+        }
+        &__logo-text {
+            margin: -12px auto 0 92px;
+            letter-spacing: .08em;
+            font-size: 0.85em;
+        }
+        &__social {
+            width: 100px;
+            margin: 30px 0 auto auto;
+            order: 3;
+            & ul {
+                width: 95px;
+            }
+        }
+        &__vk, &__fb, &__instagram {
+            & img {
+                display: block;
+            }
+        }
+        &__fb, &__instagram {
+            margin: -5px 0 0;
+        }
+        &__trail {
+            width: 50%;
+            margin: 0;
+            font-size: 1em;
+            letter-spacing: 0.13em;
+            order: 1;
+            &::after {
+                left: 150px;
+                top: 3px;
+            }
+        }
+    }
+}

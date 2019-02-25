@@ -1,0 +1,190 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $font-main;
+    font-size: 14px;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.block {
+    width: 90.625%;
+    max-width: 1367px;
+    margin: 0 auto 47px;
+    padding: 0;
+    box-sizing: border-box;
+    &__title {
+        position: relative;
+        margin: 0 0 30px 25px;
+        font-family: $font-subtitle;
+        font-size: 1.286em;
+        font-weight: $font-weight-medium;
+        line-height: 1.265em;
+        color: $pallete-body-text;
+        opacity: 0.87;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 11px;
+            left: -25px;
+            width: 15px;
+            height: 0px;
+            border: 1px solid $pallete-body-text;
+            opacity: 0.6;
+        }
+    }
+    &__subtitle {
+        font-family: $font-title;
+        font-size: 1em;
+        font-weight: $font-weight-normal;
+        color: $pallete-body-text;
+        text-align: center;
+        opacity: 0.87;
+    }
+    &__text {
+        margin: 0 0 20px 0;
+        padding: 0;
+        font-family: $font-main;
+        font-size: 1em;
+        font-weight: $font-weight-light;
+        color: $pallete-body-text;
+        opacity: 0.87;
+        list-style: none;
+    }
+    @include respond-to("medium") {
+        width: 83.7%;
+        margin: 0 auto 65px;
+        &__title {
+            margin: 10px 0 34px 53px;
+            font-size: 1.714em;
+            line-height: 2.180em;
+            &::before {
+                top: 27px;
+                left: -54px;
+                width: 35px;
+                opacity: 0.87;
+            }
+        }
+        &__subtitle {
+            font-size: 1.286em;
+        }
+        &__text {
+            font-size: 1.149em;
+        }
+    }
+    @include respond-to("large") {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto 155px;
+        padding: 0 0 0 102px;
+        &__title {
+            margin: 10px 0 34px 53px;
+            font-size: 3.429em;
+            line-height: 2.180em;
+            &::before {
+                top: 55px;
+                left: -54px;
+                width: 35px;
+                opacity: 0.87;
+            }
+        }
+        &__content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        &__subtitle {
+            font-size: 2em;
+        }
+        &__text {
+            font-size: 1.143em;
+        }
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    &__page-number {
+        display: none;
+        flex-direction: column;
+        justify-content: start;
+        width: 16px;
+        margin: 155px 40px 0 0;
+    }
+    &__block-number {
+        font-family: $font-main;
+        font-size: 1.143em;
+        font-weight: $font-weight-normal;
+        color: $pallete-body-text;
+        opacity: 0.5;
+    }
+    &__page-line {
+        position: relative;
+        margin: 0 0 -23px;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 14px;
+            right: 7px;
+            width: 0.1px;
+            height: 58px;
+            border: 1px solid $pallete-body-text;
+            opacity: 0.7;
+        }
+    }
+    &__page-dot {
+        position: relative;
+        margin: 24px 0 0 0;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 90px;
+            right: 6px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: $pallete-body-text;
+            opacity: 0.5;
+        }
+    }
+    @include respond-to("large") {
+        &__page-number {
+            display: flex;
+        }
+    }
+}
+
+.button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $pallete-body-text-and-background;
+    color: $pallete-body-text-and-background;
+    text-decoration: none;
+    &:active {
+        box-shadow: 0 2px 2px $pallete-body-text-and-background;
+        transition: all 0.2s;
+    }
+    &:hover,
+    &:focus {
+        cursor: pointer;
+    }
+}

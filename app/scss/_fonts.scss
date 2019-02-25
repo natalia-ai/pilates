@@ -1,0 +1,54 @@
+
+@font-face {
+    font-family: "SFUIText";
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sfui'), local('Sfui'),
+    url("../fonts/sfui/SFUIText-Regular.woff") format("woff"),
+     url("../fonts/sfui/SFUIText-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 400;
+    src: local('Proxima Nova Regular'), local('Proxima-Nova-Regular'),
+    url("../fonts/proxima/ProximaNova-Regular.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 600;
+    src: local('Proxima Nova Semibold'), local('Proxima-Nova-Semibold'),
+    url("../fonts/proxima/ProximaNova-Semibold.woff") format("woff")
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 800;
+    font-family: "Proxima Nova";
+    src: local('Proxima Nova ExtraBold'), local('Proxima-Nova-ExtraBold'),
+    url("../fonts/proxima/FontsFree-Net-Proxima-Nova-Xbold.otf") format("otf"),
+    url("../fonts/proxima/ProximaNova-Extrabld.woff") format("woff");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Light'), local('Roboto-Light'),
+         url('../fonts/roboto/RobotoLight/RobotoLight.woff') format('woff'), 
+         url('../fonts/roboto/RobotoLight/RobotoLight.ttf') format('truetype'), 
+         url('../fonts/roboto/RobotoLight/RobotoLight.eot') format('eot');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'),
+         url('../fonts/roboto/RobotoMedium/RobotoMedium.woff') format('woff'), 
+         url('../fonts/roboto/RobotoMedium/RobotoMedium.ttf') format('truetype'), 
+         url('../fonts/roboto/RobotoMedium/RobotoMedium.eot') format('eot'); 
+  }

@@ -1,0 +1,122 @@
+.about-pilates {
+    &__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 95%;
+        margin: 0 0 7px 0;
+    }
+    &__briefly {
+        margin: -6px 2px 18px 0;
+    }
+    &__in-detail {
+        margin: 10px 0 0;
+    }
+    &__in-detail-link {
+        position: relative;
+        font-family: $font-main;
+        font-size: 0.857em;
+        font-weight: $font-weight-medium;
+        color: $pallete-in-detail-text;
+        text-transform: uppercase;
+        letter-spacing: 0.143em;
+        opacity: 0.87;
+        &::after,
+        &::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 98px;
+            z-index: 1;
+            width: 9px;
+            height: 2px;
+            background-color: $pallete-in-detail-text;
+            transform: rotate(45deg);
+        }
+        &::before {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+    }
+    &__img {
+        width: 98%;
+        max-width: 960px;
+        margin: -35px 0 0 auto;
+        & .about-pilates__description {
+            display: none;
+        }
+    }
+    @include respond-to("medium") {
+        &__description {
+            width: 50%;
+            margin: 0px 0 24px 0;
+        }
+        &__briefly {
+            margin: -6px 2px 28px 0;
+        }
+        &__in-detail {
+            margin: 22px 0 0;
+        }
+        &__in-detail-link {
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            &::after,
+            &::before {
+                top: 4px;
+                left: 113px;
+                width: 10px;
+            }
+            &::before {
+                top: 10px;
+            }
+        }
+        &__img {
+            width: 65%;
+            margin: -215px 5px 0 auto;
+        }
+    }
+    @include respond-to("large") {
+        &__description {
+            display: none;
+            justify-content: flex-start;
+            width: 38%;
+            margin: 0 0 24px 0;
+        }
+        &__briefly {
+            margin: -6px 2px 32px 0;
+            line-height: 1.5em;
+        }
+        &__in-detail {
+            margin: 2px 0 0 -3px;
+        }
+        &__in-detail-link {
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            &::after,
+            &::before {
+                top: 4px;
+                left: 113px;
+                width: 10px;
+            }
+            &::before {
+                top: 10px;
+            }
+        }
+        &__img {
+            width: 68%;
+            margin: -90px 45px 0 auto;
+            position: relative;
+            & .about-pilates__description {
+                display: flex;
+                position: absolute;
+                top: 14.3%;
+                left: -35%;
+                width: 43%;
+            }
+        }
+        &__page-number {
+            margin: 118px 40px 0 0;
+        }
+    }
+    
+}

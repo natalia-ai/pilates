@@ -1,0 +1,126 @@
+.header {
+    width: 100%;
+    max-width: 1367px;
+    margin: 0 0 255px 0;
+    &__title-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 52%;
+        padding: 58px 0 0 15px;
+        box-sizing: border-box;
+    }
+    &__title {
+        font-family: $font-title;
+        font-size: 2.143em;
+        font-weight: $font-weight-light;
+        color: $pallete-body-text-and-background;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        z-index: 1;
+    }
+    &__text {
+        display: none;
+        margin: 0 0 0 48px;
+        font-family: $font-title;
+        font-size: 1.286em;
+        font-weight: $font-weight-light;
+        color: $pallete-body-text-and-background;
+        line-height: 2.191em;
+        z-index: 1;
+    }
+    &__schedule-button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 152px;
+        height: 35px;
+        margin: 5px 0 0 2px;
+        border-radius: 19px;
+        border: 2px solid $pallete-body-text-and-background;
+        font-family: $font-main;
+        font-size: 0.786em;
+        font-weight: $font-weight-medium;
+        color: $pallete-body-text-and-background;
+        text-decoration: none;
+        &:active {
+            box-shadow: 0 2px 2px $pallete-body-text-and-background;
+            transition: all 0.2s;
+        }
+        &:hover,
+        &:focus {
+            cursor: pointer;
+        }
+    }
+    @include respond-to("medium") {
+        margin: 0 0 255px 0;
+        &__title {
+            margin: 60px auto 40px 45px;
+            font-weight: $font-weight-light;
+            font-size: 3.429em;
+            letter-spacing: 0.1em;
+        }
+        &__text {
+            display: block;
+        }
+        &__schedule-button {
+            position: relative;
+            width: 245px;
+            height: 50px;
+            margin: 40px 0 0 46px;
+            border-radius: 27px;
+            font-size: 1em;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 20px;
+                left: 215px;
+                z-index: 1;
+                width: 74px;
+                height: 14px;
+                background: url("../img/arrow-button-tablet.svg") 0 0 no-repeat;
+            }
+        }
+    }
+    @include respond-to("large") {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1600px;
+        margin: 0 0 352px 0;
+        &__title-wrapper {
+            padding: 54px 0 0 54px;
+        }
+        &__title {
+            margin: 68px auto 15px 45px;
+            font-size: 4.143em;
+            letter-spacing: 0.11em;
+            line-height: 1.21em;
+        }
+        &__text {
+            display: block;
+        }
+        &__schedule-button {
+            position: relative;
+            width: 245px;
+            height: 50px;
+            margin: 40px 0 0 46px;
+            border-radius: 27px;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 20px;
+                left: 210px;
+                z-index: 1;
+                width: 74px;
+                height: 14px;
+                background: url("../img/arrow-button-tablet.svg") 0 0 no-repeat;
+            }
+        }
+        &__page-number {
+            display: flex;
+        }
+    }
+}

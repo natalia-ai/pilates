@@ -1,0 +1,174 @@
+.schedule-and-cost {
+    position: relative;
+    margin: -8px auto 53px;
+    &__levels {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-row-gap: 18px;
+        margin: -5px auto 0;
+    }
+    &__level {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        margin: 0 auto;
+        padding: 100px 10px 42px 47px;
+        box-sizing: border-box;
+        background: $pallete-block-background;
+        border-radius: 4px;
+        opacity: 0.5;
+        &::before {
+            content: "01";
+            position: absolute;
+            top: 15px;
+            right: 15%;
+            font-family: $font-background;
+            font-size: 8.214em;
+            font-weight: $font-weight-extrabold;
+            opacity: 0.1;
+        }
+    }
+    &__level-professional {
+        opacity: 0.7;
+        &::before {
+            content: "02";
+        }
+    }
+    &__level-master {
+        opacity: 0.9;
+        &::before {
+            content: "03";
+        }
+    }
+    &__title-of-level {
+        width: 70%;
+        margin: 0 0 5px;
+        font-family: $font-title;
+        font-size: 0.857em;
+        font-weight: $font-weight-medium;
+        text-transform: uppercase;
+        color: $pallete-body-text-and-background;
+        letter-spacing: 0.143em;
+        & span {
+            font-size: 1.286em;
+            letter-spacing: 0.25em;
+        }
+    }
+    &__cost {
+        font-family: $font-main;
+        font-size: 1.143em;
+        font-weight: $font-weight-bold;
+        color: $pallete-body-text-and-background;
+        letter-spacing: 0.5px;
+    }
+    &__schedule {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: -5px 0 22px -38px;
+        font-family: $font-main;
+        font-size: 1.143em;
+        font-weight: $font-weight-medium;
+        color: $pallete-body-text-and-background;
+        letter-spacing: 0.03em;
+        list-style: none;
+        & li {
+            margin: 10px 0 5px 0;
+        }
+    }
+    &__sign-up {
+        width: 127px;
+        height: 26px;
+        border-radius: 15px;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 115px;
+            z-index: 2;
+            width: 37px;
+            height: 14px;
+            background: url("../img/arrow.svg") no-repeat;
+        }
+    }
+    @include respond-to("medium") {
+    &__levels {
+        grid-template-rows: none;
+        grid-row-gap: 0;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 11px;
+        margin: 0 3px 25px 0;
+    }
+    &__level {
+        width: 100%;
+        padding: 98px 0 42px 25px;
+        &::before {
+            right: 20px;
+        }
+    }
+}
+@include respond-to("large") {
+    width: 100%;
+    margin: -12px auto 110px;
+    &__levels {
+        grid-template-rows: none;
+        grid-row-gap: 0;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 20px;
+        width: 92%;
+        margin: 33px 0px 25px 26px;
+    }
+    &__level {
+        width: 100%;
+        padding: 185px 35px 95px 70px;
+        margin: -29px;
+        &::before {
+            top: 48px;
+            right: 12%;
+            font-size: 14em;
+        }
+    }
+    &__title-of-level {
+        margin: 0 0 -4px 0;
+        font-size: 1em;
+        letter-spacing: 0.1em;
+        & span {
+            font-size: 2em;
+            letter-spacing: 0.171em;
+        }
+    }
+    &__cost {
+        font-size: 1.714em;
+    }
+    &__schedule {
+        margin: -5px 0 34px -38px;
+        & li {
+            font-size: 1.177em;
+            margin: 10px 0 5px;
+            & span {
+                word-spacing: 0.5em;
+            }
+        }
+    }
+    &__sign-up {
+        width: 233px;
+        height: 52px;
+        border-radius: 27px;
+        font-size: 1.357em;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 190px;
+            z-index: 2;
+            width: 72px;
+            height: 12px;
+            background: url("../img/arrow-desctop.svg") no-repeat;
+        }
+    }
+    &__page-number {
+        margin: 195px 40px 0 0;
+    }
+}
+}

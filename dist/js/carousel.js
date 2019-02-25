@@ -1,5 +1,4 @@
 'use strict';
-(function () {
 var slider = (function (config) {
 
   const ClassName = {
@@ -182,4 +181,3 @@ var slider = (function (config) {
   interval: 5000,
   pause: true
 }));
-})()
