@@ -19,5 +19,5 @@ function closePopup() {
     })
 }
 showPopup();
-closePopup();
+closePopup(); 
 })();

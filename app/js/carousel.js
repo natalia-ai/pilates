@@ -76,7 +76,7 @@ var slider = (function (config) {
       if (direction === "next") { 
         directionalClassName = ClassName.ITEM_LEFT;
         orderClassName = ClassName.ITEM_NEXT;
-      }
+      } 
 
       targetItem.classList.add(orderClassName); 
       _setActiveIndicator(activeItemIndex, targetItemIndex); 
