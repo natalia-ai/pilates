@@ -12,22 +12,21 @@ var slider = (function (config) {
   }
 
   var
-    _isSliding = false, // индикация процесса смены слайда
-    _interval = 0, // числовой идентификатор таймера
-    _transitionDuration = 700, // длительность перехода
-    _slider = {}, // DOM элемент слайдера
-    _items = {}, // .slider-item (массив слайдов) 
-    _sliderIndicators = {}, // [data-slide-to] (индикаторы)
+    _isSliding = false, 
+    _interval = 0, 
+    _transitionDuration = 700, 
+    _slider = {}, 
+    _items = {}, 
+    _sliderIndicators = {},
     _config = {
-      selector: '', // селектор слайдера
-      isCycling: true, // автоматическая смена слайдов
-      direction: 'next', // направление смены слайдов
-      interval: 5000, // интервал между автоматической сменой слайдов
-      pause: true // устанавливать ли паузу при поднесении курсора к слайдеру
+      selector: '',
+      isCycling: true, 
+      direction: 'next', 
+      interval: 5000, 
+      pause: true 
     };
 
   var
-    // функция для получения порядкового индекса элемента
     _getItemIndex = function (_currentItem) {
       var result;
       _items.forEach(function (item, index) {
@@ -37,7 +36,7 @@ var slider = (function (config) {
       });
       return result;
     },
-    // функция для подсветки активного индикатора
+  
     _setActiveIndicator = function (_activeIndex, _targetIndex) {
       if (_sliderIndicators.length !== _items.length) {
         return;
@@ -46,13 +45,12 @@ var slider = (function (config) {
       _sliderIndicators[_targetIndex].classList.add(ClassName.INDICATOR_ACTIVE);
     },
 
-    // функция для смены слайда
     _slide = function (direction, activeItemIndex, targetItemIndex) {
       var
         directionalClassName = ClassName.ITEM_RIGHT,
         orderClassName = ClassName.ITEM_PREV,
-        activeItem = _items[activeItemIndex], // текущий элемент
-        targetItem = _items[targetItemIndex]; // следующий элемент
+        activeItem = _items[activeItemIndex], 
+        targetItem = _items[targetItemIndex]; 
 
       var _slideEndTransition = function () {
         activeItem.classList.remove(ClassName.ITEM_ACTIVE);
@@ -71,38 +69,38 @@ var slider = (function (config) {
       };
 
       if (_isSliding) {
-        return; // завершаем выполнение функции если идёт процесс смены слайда
+        return; 
       }
-      _isSliding = true; // устанавливаем переменной значение true (идёт процесс смены слайда)
+      _isSliding = true; 
 
-      if (direction === "next") { // устанавливаем значение классов в зависимости от направления
+      if (direction === "next") { 
         directionalClassName = ClassName.ITEM_LEFT;
         orderClassName = ClassName.ITEM_NEXT;
       }
 
-      targetItem.classList.add(orderClassName); // устанавливаем положение элемента перед трансформацией
-      _setActiveIndicator(activeItemIndex, targetItemIndex); // устанавливаем активный индикатор
+      targetItem.classList.add(orderClassName); 
+      _setActiveIndicator(activeItemIndex, targetItemIndex); 
 
-      window.setTimeout(function () { // запускаем трансформацию
+      window.setTimeout(function () { 
         targetItem.classList.add(directionalClassName);
         activeItem.classList.add(directionalClassName);
         activeItem.addEventListener('transitionend', _slideEndTransition);
       }, 0);
 
     },
-    // функция для перехода к предыдущему или следующему слайду
+    
     _slideTo = function (direction) {
       var
-        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), // текущий элемент
-        activeItemIndex = _getItemIndex(activeItem), // индекс текущего элемента 
-        lastItemIndex = _items.length - 1, // индекс последнего элемента
+        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), 
+        activeItemIndex = _getItemIndex(activeItem), 
+        lastItemIndex = _items.length - 1, 
         targetItemIndex = activeItemIndex === 0 ? lastItemIndex : activeItemIndex - 1;
-      if (direction === "next") { // определяем индекс следующего слайда в зависимости от направления
+      if (direction === "next") { 
         targetItemIndex = activeItemIndex == lastItemIndex ? 0 : activeItemIndex + 1;
       }
       _slide(direction, activeItemIndex, targetItemIndex);
     },
-    // функция для запуска автоматической смены слайдов в указанном направлении
+    
     _cycle = function () {
       if (_config.isCycling) {
         _interval = window.setInterval(function () {
@@ -110,17 +108,17 @@ var slider = (function (config) {
         }, _config.interval);
       }
     },
-    // обработка события click
+    
     _actionClick = function (e) {
       var
-        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), // текущий элемент
-        activeItemIndex = _getItemIndex(activeItem), // индекс текущего элемента
+        activeItem = _slider.querySelector('.' + ClassName.ITEM_ACTIVE), 
+        activeItemIndex = _getItemIndex(activeItem), 
         targetItemIndex = e.target.getAttribute('data-slide-to');
 
       if (!(e.target.hasAttribute('data-slide-to') || e.target.classList.contains('feedback__slider-control'))) {
-        return; // завершаем если клик пришёлся на не соответствующие элементы
+        return; 
       }
-      if (e.target.hasAttribute('data-slide-to')) {// осуществляем переход на указанный сдайд 
+      if (e.target.hasAttribute('data-slide-to')) {
         if (activeItemIndex === targetItemIndex) {
           return;
         }
@@ -130,11 +128,9 @@ var slider = (function (config) {
         _slideTo(e.target.classList.contains('feedback__slider-control--next') ? 'next' : 'prev');
       }
     },
-    // установка обработчиков событий
+    
     _setupListeners = function () {
-      // добавление к слайдеру обработчика события click
       _slider.addEventListener('click', _actionClick);
-      // остановка автоматической смены слайдов (при нахождении курсора над слайдером)
       if (_config.pause && _config.isCycling) {
         _slider.addEventListener('mouseenter', function (e) {
           clearInterval(_interval);
@@ -146,7 +142,6 @@ var slider = (function (config) {
       }
     };
 
-  // init (инициализация слайдера)
   for (var key in config) {
     if (key in _config) {
       _config[key] = config[key];
@@ -155,21 +150,20 @@ var slider = (function (config) {
   _slider = (typeof _config.selector === 'string' ? document.querySelector(_config.selector) : _config.selector);
   _items = _slider.querySelectorAll('.' + ClassName.ITEM);
   _sliderIndicators = _slider.querySelectorAll('[data-slide-to]');
-  // запуск функции cycle
   _cycle();
   _setupListeners();
 
   return {
-    next: function () { // метод next 
+    next: function () { 
       _slideTo('next');
     },
-    prev: function () { // метод prev 
+    prev: function () { 
       _slideTo('prev');
     },
-    stop: function () { // метод stop
+    stop: function () { 
       clearInterval(_interval);
     },
-    cycle: function () { // метод cycle 
+    cycle: function () { 
       clearInterval(_interval);
       _cycle();
     }
