@@ -1,7 +1,7 @@
 'use strict';
 (function () {
   var HEADER_HEIGHT_COOFICIENT = 0.14;
-  
+
   var mainNav = document.querySelector('.main-nav');
   var buns = document.querySelector('.main-nav__buttons');
   var toggle = document.querySelector('.main-nav__toggle');

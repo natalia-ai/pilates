@@ -1,3 +1,27 @@
+@-webkit-keyframes opacity {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; }
+  25% {
+    opacity: 0.25; }
+  75% {
+    opacity: 0.75; }
+  50% {
+    opacity: 0.5; } }
+
+@keyframes opacity {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; }
+  25% {
+    opacity: 0.25; }
+  75% {
+    opacity: 0.75; }
+  50% {
+    opacity: 0.5; } }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -561,22 +585,22 @@ img {
       left: 0;
       width: 100%;
       height: 474px;
-      background: url("../img/background-mobile.png") no-repeat;
+      background: url("../img/background-mobile.jpg") no-repeat;
       -webkit-background-size: cover;
               background-size: cover; }
   @media (min-width: 565px) {
     .page__wrapper::before {
-      background: url("../img/background-tablet.png") no-repeat; } }
+      background: url("../img/background-tablet.jpg") no-repeat; } }
   @media (min-width: 764px) {
     .page__wrapper::before {
       height: 658px;
-      background: url("../img/background-tablet.png") no-repeat;
+      background: url("../img/background-tablet.jpg") no-repeat;
       -webkit-background-size: cover;
               background-size: cover; } }
   @media (min-width: 1366px) {
     .page__wrapper::before {
       height: 789px;
-      background: url("../img/background-desctop.png") no-repeat;
+      background: url("../img/background-desctop.jpg") no-repeat;
       -webkit-background-size: cover;
               background-size: cover; } }
 
@@ -1043,13 +1067,7 @@ img {
 
 @media (min-width: 1366px) {
   .about-pilates__description {
-    display: none;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    width: 38%;
-    margin: 0 0 24px 0; }
+    display: none; }
   .about-pilates__briefly {
     margin: -6px 2px 32px 0;
     line-height: 1.5em; }
@@ -1672,7 +1690,8 @@ input[type=checkbox]:checked + .form-sign-up__label-checkbox::before {
       -webkit-box-ordinal-group: 3;
       -webkit-order: 2;
           -ms-flex-order: 2;
-              order: 2; }
+              order: 2;
+      z-index: 1; }
     .about-classes__stage-basic {
       margin: 0 0;
       padding: 48px 0 0; }

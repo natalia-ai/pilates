@@ -78,9 +78,6 @@
     @include respond-to("large") {
         &__description {
             display: none;
-            justify-content: flex-start;
-            width: 38%;
-            margin: 0 0 24px 0;
         }
         &__briefly {
             margin: -6px 2px 32px 0;

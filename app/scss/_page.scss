@@ -17,14 +17,14 @@
             left: 0;
             width: 100%;
             height: 474px;
-            background: url("../img/background-mobile.png") no-repeat;
+            background: url("../img/background-mobile.jpg") no-repeat;
             background-size: cover;
         }
     }
     @include respond-to("mobile-565") {
         &__wrapper {
             &::before {
-                background: url("../img/background-tablet.png") no-repeat;
+                background: url("../img/background-tablet.jpg") no-repeat;
             }
         }
     }
@@ -32,7 +32,7 @@
         &__wrapper {
             &::before {
                 height: 658px;
-                background: url("../img/background-tablet.png") no-repeat;
+                background: url("../img/background-tablet.jpg") no-repeat;
                 background-size: cover;
             }
         }
@@ -41,7 +41,7 @@
         &__wrapper {
             &::before {
                 height: 789px;
-                background: url("../img/background-desctop.png") no-repeat;
+                background: url("../img/background-desctop.jpg") no-repeat;
                 background-size: cover;
             }
         }
