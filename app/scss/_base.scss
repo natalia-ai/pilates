@@ -188,3 +188,7 @@ img {
         cursor: pointer;
     }
 }
+
+:focus {
+    outline: 4px solid rgb(65, 183, 219);
+  }

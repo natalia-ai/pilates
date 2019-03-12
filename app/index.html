@@ -49,7 +49,7 @@
       </div>
       <nav class="main-nav main-nav--closed">
         <p class="main-nav__buttons" id="toggle">
-          <a class="main-nav__toggle" href="#"></a>
+          <button class="main-nav__toggle"><p class="main-nav__toggle-inner"></p></button>
         </p>
         <ul class="main-nav__list">
           <li class="main-nav__item"><a class="main-nav__link  main-nav__link--about-pilates" href="#about-pilates">О
@@ -191,9 +191,6 @@
           </div>
         </div>
         <section class="popup-sign-up" id="popup-sign-up">
-          <p class="popup-sign-up__close">
-            <a class="popup-sign-up__close-link visual1ly-hidden">закрыть</a>
-          </p>
           <h2 class="visually-hidden">Окно записи на занятие</h2>
           <ul class="popup-sign-up__content">
             <li class="popup-sign-up__title">Хочешь записаться на занятие?</li>
@@ -201,14 +198,14 @@
             <li class="popup-sign-up__form">
               <form class="form-sign-up" method="post" action="/echo">
                 <input class="form-sign-up__input form-sign-up__telephone required" title="Введите номер телефона"
-                  type="text" name="telephone" placeholder="Телефон" required aria-required="true">
+                  type="text" name="telephone" placeholder="Телефон" required>
                 <input class="form-sign-up__input form-sign-up__name required" title="Введите своё имя" type="text"
-                  name="name" placeholder="Имя" required aria-required="true">
+                  name="name" placeholder="Имя" required>
                 <input class="form-sign-up__input form-sign-up__e-mail" title="Введите свой адрес электронной почты"
                   type="text" name="e-mail" placeholder="E-mail">
-                <input class="form-sign-up__input-checkbox form-sign-up__agree visually-hidden required"
+                <input class="form-sign-up__input-checkbox form-sign-up__agree required"
                   id="checkbox-agree" title="Подтвердите своё согласие на обработку персональных данных" type="checkbox"
-                  name="agree" required aria-required="true" checked>
+                  name="agree" required checked>
                 <label class="form-sign-up__label-checkbox" for="checkbox-agree">
                   Я согласен на обработку
                   персональных данных</label>
@@ -218,6 +215,7 @@
               </form>
             </li>
           </ul>
+            <button class="popup-sign-up__close"><span class="visually-hidden">закрыть</span></button>
         </section>
       </section>
 
@@ -316,7 +314,7 @@
                     <ul class="feedback__age-and-social">
                       <li class="feedback__age">25 лет</li>
                       <li class="feedback__vk">
-                        <a class="feedback__vk-link">
+                        <a class="feedback__vk-link" href="#">
                           <img src="img/vk_.svg" width="20" height="12" alt="Вконтакте">
                         </a>
                       </li>
@@ -351,12 +349,12 @@
                     <ul class="feedback__age-and-social">
                       <li class="feedback__age">29 лет</li>
                       <li class="feedback__vk">
-                        <a class="feedback__vk-link">
+                        <a class="feedback__vk-link" href="#">
                           <img src="img/vk_.svg" width="20" height="12" alt="Вконтакте">
                         </a>
                       </li>
                       <li class="feedback__instagram">
-                        <a class="feedback__instagram-link">
+                        <a class="feedback__instagram-link" href="#">
                           <img src="img/instagram.svg" width="15" height="15" alt="Инстаграм">
                         </a>
                       </li>
@@ -387,12 +385,12 @@
                     <ul class="feedback__age-and-social">
                       <li class="feedback__age">23 года</li>
                       <li class="feedback__vk">
-                        <a class="feedback__vk-link">
+                        <a class="feedback__vk-link" href="#">
                           <img src="img/vk_.svg" width="20" height="12" alt="Вконтакте">
                         </a>
                       </li>
                       <li class="feedback__instagram">
-                        <a class="feedback__instagram-link">
+                        <a class="feedback__instagram-link" href="#">
                           <img src="img/instagram.svg" width="15" height="15" alt="Инстаграм">
                         </a>
                       </li>
@@ -407,8 +405,8 @@
                 </div>
               </div>
             </div>
-            <a class="feedback__slider-control feedback__slider-control--prev" href="#" role="button"></a>
-            <a class="feedback__slider-control feedback__slider-control--next" href="#" role="button"></a>
+            <button class="feedback__slider-control feedback__slider-control--prev"></button>
+            <button class="feedback__slider-control feedback__slider-control--next"></button>
           </div>
           <div class="main__page-number feedback__page-number">
             <span class="main__block-number">05</span>
@@ -515,7 +513,7 @@
         <li class="footer__social">
           <ul>
             <li class="footer__vk">
-              <a class="footer__vk-link" href="#">
+              <a class="footer__link footer__vk-link" href="#">
                 <picture>
                   <source media="(min-width:1366px)" srcset="img/vk-desctop.png">
                   <img src="img/vk.png" width="20" height="12" alt="Вконтакте">
@@ -523,7 +521,7 @@
               </a>
             </li>
             <li class="footer__fb">
-              <a class="footer__fb-link" href="#">
+              <a class="footer__link footer__fb-link" href="#">
                 <picture>
                   <source srcset="img/facebook-desctop.png" media="(min-width:1366px)">
                   <img src="img/facebook.png" width="8" height="15" alt="Фейсбук">
@@ -531,7 +529,7 @@
               </a>
             </li>
             <li class="footer__instagram">
-              <a class="footer__instagram-link" href="#">
+              <a class="footer__link footer__instagram-link" href="#">
                 <picture>
                   <source srcset="img/instagram-social-desctop.png" media="(min-width:1366px)">
                   <img src="img/instagram-social.png" width="13" height="13" alt="Инстаграм">

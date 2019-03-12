@@ -19,16 +19,18 @@
     background-color: $pallete-body-text-and-background;
     &__close {
         position: relative;
-        width: 0px;
-        height: 0px;
-        margin: 12px 26px 0 auto;
-        text-indent: -9999px;
+        top: -482px;
+        right: -108px;
+        width: 20px;
+        height: 20px;
+        border: none;
+        background: none;
         &::before,
         &::after {
             content: "";
             position: absolute;
-            top: -47px;
-            right: 0;
+            top: 8px;
+            right: -1px;
             width: 23px;
             height: 2px;
             background-color: $pallete-body-text;
@@ -74,9 +76,11 @@
         padding: 108px 0 52px;
         &__close {
             margin: 0 36px 0 auto;
+            top: -324px;
+            right: -288px;
             &::before,
             &::after {
-                top: -58px;
+                right: -5px;
                 width: 30px;
             }
         }
@@ -84,21 +88,24 @@
             font-size: 2.143em;
         }
         &__subtitle {
-            margin: 0 0 36px;
+            margin: 0 0 30px;
             letter-spacing: 0.06em;
         }
     }
     @include respond-to("large") {
-        width: 88%;
+        width: 85.6%;
         height: 777px;
-        margin-left: -44%;
+        margin-left: -42.8%;
         padding: 188px 0 52px;
         &__close {
-            margin: 0 100px 0 auto;
+            width: 40px;
+            height: 40px;
+            top: -533px;
+            right: -476px;
             &::before,
             &::after {
-                top: -110px;
                 width: 50px;
+                top: 18px;
             }
         }
         &__title {
@@ -118,21 +125,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 70%;
+    width: 82%;
     padding: 0 20px 0 60px;
     &__input {
-        width: 83.5%;
-        margin: 0 0 25px;
+        width: 72.5%;
+        margin: 0 60px 26px 0;
         border: none;
         border-bottom: 2px solid $pallete-popup-text;
         line-height: 1.75em;
-        outline: none;
         &:active {
             box-shadow: 0 2px 2px $pallete-popup-text;
         }
     }
+    &__input-checkbox {
+        width: 18px;
+        height: 18px;
+        margin: 8px 0 -18px -12px;
+    }
     &__label-checkbox {
-        margin: 6px 0 32px 15px;
+        margin: -5px 0 34px 16px;
         text-align: left;
         line-height: 1.45em;
         letter-spacing: 0.035em;
@@ -143,7 +154,7 @@
     &__submit {
         width: 155px;
         height: 35px;
-        margin: 0 0 0 7px;
+        margin: 0 0 0 10px;
         box-sizing: border-box;
         border: none;
         border-radius: 18px;
@@ -161,12 +172,12 @@
     @include respond-to("medium") {
         flex-direction: row;
         flex-wrap: wrap;
-        width: 73%;
+        width: 100%;
         margin: 0 auto;
         padding: 0;
-        &__input {
-            width: 26%;
-            margin: 0 0 60px;
+        &__input:not(last-of-type) {
+            width: 22.6%;
+            margin: 0 42px 60px 0;
         }
         &__telephone {
             order: 2;
@@ -177,23 +188,30 @@
         &__e-mail {
             order: 3;
         }
+        &__input-checkbox {
+            position: relative;
+            top: 0;
+            left: 40px;
+            margin: 98px 0 -22px 10px;
+        }
         &__label-checkbox {
-            margin: 6px 0 32px 36px;
+            margin: 5px 0 0 77px;
             order: 3;
         }
         &__submit {
+            margin: -3px 40px 0 0;
             order: 3;
         }
     }
     @include respond-to("large") {
         flex-direction: row;
         flex-wrap: wrap;
-        width: 73%;
+        width: 83.5%;
         margin: 0 auto;
         padding: 0;
-        &__input {
-            width: 26%;
-            margin: 0 0 90px;
+        &__input:not(last-of-type)  {
+            width: 22.8%;
+            margin: 0 60px 90px 0;
             font-size: 1.143em;
             line-height: 2.3em;
         }
@@ -206,14 +224,21 @@
         &__e-mail {
             order: 3;
         }
+        &__input-checkbox {
+            width: 30px;
+            height: 30px;
+            top: 60px;
+            margin: 85px 0 -22px 25px;
+        }
         &__label-checkbox {
-            margin: 14px 0 32px 52px;
+            margin: 14px 0 32px 112px;
             font-size: 1.286em;
             order: 3;
         }
         &__submit {
             width: 237px;
             height: 54px;
+            margin: 0 62px 0 0;
             border-radius: 27px;
             font-size: 1.357em;
             order: 3;
@@ -229,8 +254,8 @@ input[type=checkbox]+.form-sign-up__label-checkbox {
     &::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: -33px;
+        top: 1px;
+        left: -32px;
         width: 21px;
         height: 21px;
         margin: 0;
@@ -247,13 +272,17 @@ input[type=checkbox]+.form-sign-up__label-checkbox {
 input[type=checkbox]:checked+.form-sign-up__label-checkbox::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -33px;
+    top: 1px;
+    left: -32px;
     width: 21px;
     height: 21px;
     margin: 0;
     background: $pallete-block-background url(../img/checkbox-on.svg) no-repeat;
     background-size: cover;
+    @include respond-to("medium") {
+        top: -1px;
+        left: -30px;
+    }
     @include respond-to("large") {
         top: -2px;
         left: -50px;
@@ -262,3 +291,6 @@ input[type=checkbox]:checked+.form-sign-up__label-checkbox::before {
         background: $pallete-block-background url(../img/checkbox-on-desctop.svg) no-repeat;
     }
 }
+:focus {
+    outline: 4px solid rgb(65, 183, 219);
+  }
